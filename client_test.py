@@ -36,6 +36,20 @@ class ClientTest(unittest.TestCase):
 
     self.assertIsNone(getRatio(price_a, price_b))
 
+  def test_getRatio_Price_A_isZero(self):
+    quotes = [
+      {'top_ask': {'price': 119.2, 'size': 36}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 0, 'size': 109}, 'id': '0.109974697771', 'stock': 'ABC'},
+      {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
+    ]
+    """ ------------ Add the assertion below ------------ """
+
+    quote = quotes[0]
+    price_a = quote['top_bid']['price']
+    quote2 = quotes[1]
+    price_b = quote2['top_bid']['price']
+
+    self.assertIsNotNone(getRatio(price_a, price_b))
+
 
 
 if __name__ == '__main__':
